@@ -1,6 +1,7 @@
 import Title from "@/components/Title";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,12 +17,14 @@ export default function Home() {
         />
         <article className="flex flex-col space-y-10 items-start">
           <Title />
-          <Button variant="outline" className="text-xl p-5">
-            Get Started
-          </Button>
+          <Link href="/login">
+            <Button variant="outline" className="text-xl p-5">
+              Get Started
+            </Button>
+          </Link>
         </article>
       </section>
-      <section className="flex flex-col items-center justify-center h-screen bg-muted/50">
+      <section className="flex flex-col items-center justify-center h-screen bg-muted/50 px-10">
         <h2>
           Career Coach is a resume builder that helps you create a professional
           resume in minutes.
