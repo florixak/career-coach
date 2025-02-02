@@ -11,13 +11,13 @@ const Header = async () => {
   } = await supabase.auth.getUser();
 
   return (
-    <header className="flex z-[100] justify-between items-center py-1 md:py-4 px-5 md:px-10 border-b fixed w-full backdrop-blur-sm">
+    <header className="flex z-[100] justify-between items-center py-1 md:py-2 px-5 md:px-10 border-b fixed w-full backdrop-blur-sm">
       <Link href="/">
         <Image
           src="/logo-text.webp"
           alt="Career Coach"
-          width={100}
-          height={100}
+          width={128}
+          height={128}
         />
       </Link>
 
