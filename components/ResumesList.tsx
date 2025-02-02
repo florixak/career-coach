@@ -4,8 +4,6 @@ import React from "react";
 const ResumesList = async () => {
   const resumes = await getResumes();
 
-  console.log(resumes);
-
   return (
     <div className="grid grid-cols-3">
       {resumes.resumes?.map((resume) => (
