@@ -1,7 +1,7 @@
-import React from "react";
-
 const Loading = () => {
-  return <span>Loading</span>;
+  return (
+    <span className="h-screen flex items-center justify-center">Loading</span>
+  );
 };
 
 export default Loading;
