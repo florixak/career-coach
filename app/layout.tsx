@@ -77,7 +77,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen font-work-sans">{children}</main>
+          <main className="min-h-screen overflow-x-hidden font-work-sans">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>
