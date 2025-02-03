@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { createClient } from "@/utils/supabase/server";
+import { Newspaper, User } from "lucide-react";
 
 const Header = async () => {
   const supabase = await createClient();
@@ -20,18 +21,30 @@ const Header = async () => {
           height={128}
         />
       </Link>
-
-      <div className="text-lg">
+      <nav className="flex gap-5">
+        {user ? (
+          <Link href="/resumes">
+            <Button variant="outline" className="h-12">
+              Resumes <Newspaper />
+            </Button>
+          </Link>
+        ) : null}
         {user ? (
           <Link href="/profile">
-            <Button variant="outline">Profile</Button>
+            <Button variant="outline" className="h-12 sm:w-auto">
+              <span className="hidden sm:block">Profile</span>
+              <User />
+            </Button>
           </Link>
         ) : (
           <Link href="/login">
-            <Button variant="outline">Login</Button>
+            <Button variant="outline" className="h-12 sm:w-auto">
+              <span className="hidden sm:block">Login</span>
+              <User />
+            </Button>
           </Link>
         )}
-      </div>
+      </nav>
     </header>
   );
 };
