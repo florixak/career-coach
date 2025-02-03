@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section className="container flex flex-col items-center justify-center space-x-10 h-screen md:flex-row">
+      <section className="container flex-center flex-col space-x-10 md:flex-row">
         <Image
           src="/logo.webp"
           alt="Career Coach"
@@ -18,7 +18,7 @@ export default function Home() {
         <article className="flex flex-col space-y-10 items-start">
           <Title />
           <Link href="/login">
-            <Button variant="outline" className="text-xl p-5">
+            <Button variant="outline" className="text-xl p-5 font-normal">
               Get Started
             </Button>
           </Link>
