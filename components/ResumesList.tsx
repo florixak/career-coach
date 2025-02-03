@@ -1,18 +1,15 @@
 import { getResumes } from "@/action/resume";
-import React from "react";
+import ResumeCard from "./ResumeCard";
 
 const ResumesList = async () => {
   const resumes = await getResumes();
 
   return (
-    <div className="grid grid-cols-3">
+    <section className="grid grid-cols-3">
       {resumes.resumes?.map((resume) => (
-        <div key={resume.id}>
-          <h2>{resume.full_name}</h2>
-          <p>{resume.description}</p>
-        </div>
+        <ResumeCard key={resume.id} resume={resume} />
       ))}
-    </div>
+    </section>
   );
 };
 
