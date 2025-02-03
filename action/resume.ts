@@ -1,8 +1,17 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { Resume } from "@/utils/types";
 
-export const createResume = async (formData: FormData) => {
+export const createResume = async (formData: {
+  full_name: string;
+  description: string;
+  education: string[];
+  work_experience: string[];
+  skills: string[];
+  contact: string[];
+  languages: string[];
+}) => {
   const supabase = await createClient();
 
   const {
@@ -18,13 +27,7 @@ export const createResume = async (formData: FormData) => {
 
   const data = {
     user_id: user.id,
-    full_name: formData.get("fullName") as string,
-    description: formData.get("description") as string,
-    education: formData.get("education") as string,
-    work_experience: formData.get("workExperience") as string,
-    skills: formData.get("skills") as string,
-    contact: formData.get("contact") as string,
-    languages: formData.get("languages") as string,
+    ...formData,
   };
 
   const { error } = await supabase.from("resumes").insert(data);
@@ -63,6 +66,7 @@ export const updateResume = async (formData: FormData) => {
     skills: formData.get("skills") as string,
     contact: formData.get("contact") as string,
     languages: formData.get("languages") as string,
+    image: formData.get("image") as string,
   };
 
   const { error } = await supabase.from("resumes").upsert(data);
@@ -105,7 +109,11 @@ export const deleteResume = async (id: string) => {
   //   redirect("/");
 };
 
-export const getResumes = async () => {
+export const getResumes = async (): Promise<{
+  status: "SUCCESS" | "ERROR";
+  error?: string;
+  resumes?: Resume[];
+}> => {
   const supabase = await createClient();
 
   const {
@@ -137,7 +145,13 @@ export const getResumes = async () => {
   };
 };
 
-export const getResume = async (id: string) => {
+export const getResume = async (
+  id: string
+): Promise<{
+  status: "SUCCESS" | "ERROR";
+  error?: string;
+  resume?: Resume;
+}> => {
   const supabase = await createClient();
 
   const {
@@ -154,8 +168,7 @@ export const getResume = async (id: string) => {
   const { data: resumes, error } = await supabase
     .from("resumes")
     .select()
-    .eq("id", id)
-    .eq("user_id", user.id);
+    .eq("id", id);
 
   if (error) {
     return {
