@@ -6,11 +6,17 @@ import { Button } from "./ui/button";
 import { registerFormSchema } from "@/utils/validation";
 import { register } from "@/action/auth";
 import { z } from "zod";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+  const router = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleFormSubmit = async (prevState: any, formData: FormData) => {
+  const handleFormSubmit = async (
+    prevState: { status: string; error: string },
+    formData: FormData
+  ) => {
     try {
       const formValues = {
         fullName: formData.get("fullName") as string,
@@ -21,8 +27,19 @@ const RegisterForm = () => {
 
       await registerFormSchema.parseAsync(formValues);
 
-      register(formData);
-      // console.log("Registered successfully");
+      const { status, error } = await register(formData);
+
+      console.log(status);
+
+      if (status === "SUCCESS") {
+        toast.success("Registered successfully");
+        router.push("/login");
+      }
+
+      if (status === "ERROR") {
+        toast.error(error);
+      }
+
       return { ...prevState, status: "SUCCESS" };
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -34,7 +51,7 @@ const RegisterForm = () => {
     }
   };
 
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });

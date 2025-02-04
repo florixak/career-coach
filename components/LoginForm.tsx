@@ -3,16 +3,25 @@
 import { login } from "@/action/auth";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const formData = new FormData(e.currentTarget);
 
-      await login(formData);
-    } catch (error) {
-      console.error(error);
+    const formData = new FormData(e.currentTarget);
+
+    const { status, error } = await login(formData);
+
+    if (status === "SUCCESS") {
+      toast.success("Logged in successfully");
+      router.push("/");
+    }
+
+    if (status === "ERROR") {
+      toast.error(error);
     }
   };
   return (
