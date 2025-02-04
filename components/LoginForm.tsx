@@ -22,7 +22,7 @@ const LoginForm = () => {
     >
       <Input type="text" placeholder="Email" name="email" />
       <Input type="password" placeholder="Password" name="password" />
-      <Button variant="outline" type="submit">
+      <Button variant="outline" type="submit" className="h-9">
         Login
       </Button>
     </form>

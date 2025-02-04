@@ -76,7 +76,12 @@ const RegisterForm = () => {
         )}
       </div>
 
-      <Button variant="outline" type="submit" disabled={isPending}>
+      <Button
+        variant="outline"
+        type="submit"
+        disabled={isPending}
+        className="h-9"
+      >
         Register
       </Button>
     </form>
