@@ -1,5 +1,5 @@
 import { getResume } from "@/action/resume";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = async ({ params }: { params: { id: string } }) => {
@@ -7,7 +7,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const resume = await getResume(id);
 
   if (resume.status === "ERROR") {
-    return notFound();
+    redirect("/login");
   }
 
   return (
