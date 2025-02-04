@@ -17,11 +17,9 @@ export default function Home() {
         />
         <article className="flex flex-col space-y-10 items-start">
           <Title />
-          <Link href="/login">
-            <Button variant="outline" className="text-xl p-5 font-normal">
-              Get Started
-            </Button>
-          </Link>
+          <Button variant="outline" className="text-xl p-5 font-normal">
+            <Link href="/resumes">Get Started</Link>
+          </Button>
         </article>
       </section>
       <section className="flex flex-col items-center justify-center h-screen bg-muted/50 px-10">
