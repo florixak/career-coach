@@ -24,21 +24,22 @@ const Header = async () => {
       <nav className="flex gap-5">
         {user ? (
           <Link href="/resumes">
-            <Button variant="outline" className="h-12">
-              Resumes <Newspaper />
+            <Button variant="outline">
+              <span className="hidden sm:block">Resumes</span>
+              <Newspaper />
             </Button>
           </Link>
         ) : null}
         {user ? (
           <Link href="/profile">
-            <Button variant="outline" className="h-12 sm:w-auto">
+            <Button variant="outline" className="sm:w-auto">
               <span className="hidden sm:block">Profile</span>
               <User />
             </Button>
           </Link>
         ) : (
           <Link href="/login">
-            <Button variant="outline" className="h-12 sm:w-auto">
+            <Button variant="outline" className="sm:w-auto">
               <span className="hidden sm:block">Login</span>
               <User />
             </Button>
