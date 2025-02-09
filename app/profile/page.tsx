@@ -14,11 +14,16 @@ const Page = async () => {
   }
 
   return (
-    <section className="flex-center flex-col">
-      <h1 className="text-4xl font-bold">Profile</h1>
-      <p>Welcome back, {user.email}</p>
-
-      <ButtonLogout />
+    <section className="flex-center flex-row">
+      <aside>
+        <h1 className="text-4xl font-bold">Profile</h1>
+        <p>Welcome, {user.email?.split("@")[0]}</p>
+        <ButtonLogout />
+      </aside>
+      <section>
+        <h2 className="text-2xl font-bold">User Information</h2>
+        <code>{JSON.stringify(user, null, 2)}</code>
+      </section>
     </section>
   );
 };
