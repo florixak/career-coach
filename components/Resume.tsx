@@ -1,6 +1,5 @@
 import { getResume } from "@/action/resume";
 import { type Resume } from "@/utils/types";
-import Image from "next/image";
 
 type ResumeProps = {
   resumeId: Resume["id"];
