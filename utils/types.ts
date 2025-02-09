@@ -26,3 +26,10 @@ type Experience = {
   end_date: string;
   start_date: string;
 };
+
+export type Review = {
+  id: number;
+  name: string;
+  review: string;
+  stars: number;
+};
