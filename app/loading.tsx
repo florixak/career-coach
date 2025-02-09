@@ -1,5 +1,7 @@
+import { TextShimmer } from "@/components/ui/text-shimmer";
+
 const Loading = () => {
-  return <span className="flex-center">Loading</span>;
+  return <TextShimmer className="text-center">Loading</TextShimmer>;
 };
 
 export default Loading;

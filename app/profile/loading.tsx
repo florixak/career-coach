@@ -1,5 +1,11 @@
+import { TextShimmer } from "@/components/ui/text-shimmer";
+
 const Loading = () => {
-  return <div className="flex-center">Loading</div>;
+  return (
+    <TextShimmer className="flex-center text-5xl font-bold" duration={0}>
+      Loading
+    </TextShimmer>
+  );
 };
 
 export default Loading;
