@@ -11,6 +11,7 @@ const Page = async () => {
   if (!user) {
     return notFound();
   }
+
   return (
     <section className="flex-center flex-col gap-5">
       <div className="text-center">

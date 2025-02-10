@@ -2,7 +2,6 @@ import { getResumes } from "@/action/resume";
 import ResumesList from "@/components/ResumesList";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";

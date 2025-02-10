@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
 
@@ -77,11 +75,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <main className="min-h-screen overflow-x-hidden font-work-sans">
-            {children}
-          </main>
-          <Footer />
+          {children}
+
           <Toaster />
         </ThemeProvider>
       </body>

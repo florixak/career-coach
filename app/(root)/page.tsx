@@ -1,9 +1,7 @@
 import GetStartedButton from "@/components/GetStartedButton";
 import ReviewSection from "@/components/reviews/ReviewSection";
 import Title from "@/components/Title";
-import ErrorBoundary from "next/dist/client/components/error-boundary";
 import Image from "next/image";
-import Error from "./resumes/error";
 
 export default function Home() {
   return (
@@ -24,11 +22,10 @@ export default function Home() {
         </article>
       </section>
       <section className="flex-center flex-col bg-muted/50 px-10 gap-5">
-        <h2 className="text-2xl font-bold">About Career Coach</h2>
-        <p className="text-lg max-w-[40rem]">
-          Career Coach is a platform to create professional resumes. You can
-          choose from multiple templates and download your resume in PDF format.
-          You can also share your resume with a link.
+        <h2 className="text-2xl font-bold">Resume patterns</h2>
+        <p className="text-muted-foreground">
+          Choose from a variety of resume patterns to make your resume stand out
+          from the crowd.
         </p>
       </section>
 
