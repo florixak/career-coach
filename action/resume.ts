@@ -182,3 +182,15 @@ export const getResume = async (
     resume: resumes[0],
   };
 };
+
+export const sendPromptToAi = async (prompt?: string) => {
+  const aiResponse = await fetch("http://localhost:3000/api/ai", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ prompt }),
+  });
+  console.log(aiResponse);
+  return aiResponse;
+};
