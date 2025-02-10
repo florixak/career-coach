@@ -1,9 +1,23 @@
 "use client";
 
+import { sendPromptToAi } from "@/action/resume";
+import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { useRef } from "react";
 
 const ResumeCreateForm = () => {
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleEditWithAI = async () => {
+    const prompt = descriptionRef.current?.value ?? "Edit with AI";
+    const response = await sendPromptToAi(
+      "Edit this profile description to look more elegant for resume, to be hired: " +
+        prompt
+    );
+    console.log(response);
+  };
+
   return (
     <form className="flex flex-col gap-2 w-full max-w-sm">
       <div>
@@ -18,7 +32,11 @@ const ResumeCreateForm = () => {
           name="description"
           placeholder="Description"
           className="max-h-[10rem]"
+          ref={descriptionRef}
         />
+        <Button type="button" variant="outline" onClick={handleEditWithAI}>
+          Edit with AI
+        </Button>
       </div>
 
       <div>
