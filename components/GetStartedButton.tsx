@@ -11,10 +11,7 @@ const GetStartedButton = () => {
   };
 
   return (
-    <InteractiveHoverButton
-      className="font-normal py-4 px-6"
-      onClick={handleGetStarted}
-    >
+    <InteractiveHoverButton className="rounded-md" onClick={handleGetStarted}>
       Get Started
     </InteractiveHoverButton>
   );
