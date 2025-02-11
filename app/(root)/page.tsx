@@ -1,7 +1,7 @@
 import GetStartedButton from "@/components/GetStartedButton";
 import ReviewSection from "@/components/reviews/ReviewSection";
 import Title from "@/components/Title";
-import PatternCard from "@/components/ui/PatternCard";
+import PatternCard from "@/components/PatternCard";
 import Image from "next/image";
 
 export default function Home() {
