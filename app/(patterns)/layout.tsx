@@ -4,7 +4,7 @@ export default function Layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="relative font-work-sans">
+    <main className="relative font-work-sans antialiased">
       <BackToResumes />
       {children}
     </main>
