@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const ResumePattern = () => {
   return (
-    <div className="h-screen w-[50rem] mx-auto text-muted-foreground flex flex-row my-10">
+    <div className="h-full w-[50rem] mx-auto text-muted-foreground flex flex-row my-10">
       <div className="flex flex-col w-[28rem] gap-5 bg-muted text-white p-5 border-r border-black">
         <Image
           src="/logo.webp"
@@ -64,8 +64,8 @@ const ResumePattern = () => {
               <li className="ml-1 flex items-center gap-2">
                 <Mail size={18} /> example@example.com
               </li>
-              <li className="ml-1 flex items-center gap-2">
-                <MapPin size={18} />
+              <li className="ml-1 flex items-start gap-2">
+                <MapPin size={25} />
                 1234 Main St, Prague, Czech Republic
               </li>
             </ul>
