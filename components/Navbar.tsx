@@ -6,9 +6,9 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { Newspaper, User as UserIcon, Menu, Home } from "lucide-react";
 import React from "react";
-import { Button } from "./ui/button";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
+import NavBarLink from "./NavBarLink";
 
 type NavbarProps = {
   user: User | null;
@@ -18,30 +18,19 @@ const Navbar = ({ user }: NavbarProps) => {
     <nav>
       <div className="flex gap-5">
         {user ? (
-          <Link href="/resumes" className="hidden sm:block">
-            <Button variant="outline">
-              <span className="hidden sm:block">Resumes</span>
-              <Newspaper />
-            </Button>
-          </Link>
+          <NavBarLink href="/resumes" icon={<Newspaper />} variant="outline">
+            Resumes
+          </NavBarLink>
         ) : null}
 
         {user ? (
-          <Link href="/profile" className="hidden sm:block">
-            <Button variant="outline" className="sm:w-auto">
-              <span className="hidden sm:block">
-                {user?.email || "Profile"}
-              </span>
-              <UserIcon />
-            </Button>
-          </Link>
+          <NavBarLink href="/profile" icon={<UserIcon />} variant="outline">
+            {user?.email || "Profile"}
+          </NavBarLink>
         ) : (
-          <Link href="/login" className="hidden sm:block">
-            <Button variant="outline" className="sm:w-auto">
-              <span className="hidden sm:block">Login</span>
-              <UserIcon />
-            </Button>
-          </Link>
+          <NavBarLink href="/login" icon={<UserIcon />} variant="outline">
+            Login
+          </NavBarLink>
         )}
       </div>
 
