@@ -68,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${workSans.variable} antialiased`}>
+      <body className={`${workSans.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
