@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 import { registerFormSchema } from "@/utils/validation";
 import { register } from "@/action/auth";
 import { z } from "zod";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const router = useRouter();

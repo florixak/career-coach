@@ -3,8 +3,8 @@
 import { logout } from "@/action/auth";
 import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const ButtonLogout = () => {
   const router = useRouter();

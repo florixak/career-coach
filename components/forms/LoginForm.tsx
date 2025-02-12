@@ -3,8 +3,8 @@
 import { login } from "@/action/auth";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const router = useRouter();
