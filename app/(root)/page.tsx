@@ -13,8 +13,8 @@ export default function Home() {
           alt="Career Coach"
           width={430}
           height={430}
-          layout="responsive"
           className="rounded-full border w-full max-w-[21rem] md:max-w-md"
+          priority
         />
         <article className="flex flex-col space-y-10 items-start">
           <Title />
