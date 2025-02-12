@@ -1,5 +1,5 @@
 import React from "react";
-import ResumePattern from "./ResumePattern";
+import ResumePattern from "./resumes/ResumePattern";
 
 const PatternCard = () => {
   return (

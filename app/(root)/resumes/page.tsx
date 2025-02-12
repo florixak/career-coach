@@ -1,5 +1,5 @@
 import { getResumes } from "@/action/resume";
-import ResumesList from "@/components/ResumesList";
+import ResumesList from "@/components/resumes/ResumesList";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";

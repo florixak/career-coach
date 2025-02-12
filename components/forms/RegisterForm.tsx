@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useActionState, useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { registerFormSchema } from "@/utils/validation";
 import { register } from "@/action/auth";
 import { z } from "zod";

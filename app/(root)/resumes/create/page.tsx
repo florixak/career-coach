@@ -1,4 +1,4 @@
-import ResumeCreateForm from "@/components/ResumeCreateForm";
+import ResumeCreateForm from "@/components/forms/ResumeCreateForm";
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { sendPromptToAi } from "@/action/resume";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 import { useRef } from "react";
 
 const ResumeCreateForm = () => {
