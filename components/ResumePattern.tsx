@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const ResumePattern = () => {
   return (
-    <div className="h-full w-[50rem] mx-auto text-muted-foreground flex flex-row my-10">
+    <div className="h-full w-[50rem] mx-auto text-muted-foreground flex flex-row my-10 font-sans">
       <div className="flex flex-col w-[28rem] gap-5 bg-muted text-white p-5 border-r border-black">
         <Image
           src="/logo.webp"
@@ -78,8 +78,23 @@ const ResumePattern = () => {
           <p>Software Engineer</p>
         </div>
         <div>
-          <GraduationCap />
-          <h2>Education</h2>
+          <h2 className="text-lg font-bold flex items-center gap-2">
+            <GraduationCap />
+            Education
+          </h2>
+          <div className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-5">
+              <li className="flex flex-col gap-1 list-disc">
+                <h3 className="text-lg font-bold">
+                  Bachelor&apos;s in Computer Science
+                </h3>
+                <div>
+                  <p>University of Prague, Czech Republic</p>
+                  <p>2015 - 2019</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
