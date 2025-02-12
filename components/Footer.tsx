@@ -7,7 +7,8 @@ const Footer = () => {
       <div className="container mx-auto text-center">
         <p>
           Made with ❤️ by{" "}
-          <Link href="https://github.com/florixak">florixak</Link>
+          <Link href="https://github.com/florixak">florixak</Link> •{" "}
+          {new Date().getFullYear()}
         </p>
       </div>
     </footer>
