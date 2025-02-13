@@ -13,16 +13,19 @@ const Page = async () => {
     redirect("/login");
   }
 
+  const metadata = user?.user_metadata;
+
   return (
     <section className="flex-center flex-row">
       <aside>
         <h1 className="text-4xl font-bold">Profile</h1>
-        <p>Welcome, {user.email?.split("@")[0]}</p>
+        <p>Welcome, {metadata?.first_name}</p>
         <ButtonLogout />
       </aside>
       <section>
         <h2 className="text-2xl font-bold">User Information</h2>
-        <code>{JSON.stringify(user, null, 2)}</code>
+        <p>Email: {user.email}</p>
+        <p>Full Name: {metadata?.first_name + " " + metadata?.last_name}</p>
       </section>
     </section>
   );

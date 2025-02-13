@@ -4,20 +4,23 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@radix-ui/react-dropdown-menu";
-import { Newspaper, User as UserIcon, Menu, Home } from "lucide-react";
+import { Newspaper, User as UserIcon, Menu } from "lucide-react";
 import React from "react";
 import Link from "next/link";
 import NavBarLink from "./NavBarLink";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { createClient } from "@/utils/supabase/server";
 
 const Navbar = async () => {
-  const { userId } = await auth();
-  const user = await currentUser();
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const metadata = user?.user_metadata;
 
   return (
     <nav>
       <div className="flex gap-5">
-        {userId ? (
+        {user ? (
           <NavBarLink href="/resumes" icon={<Newspaper />} variant="outline">
             Resumes
           </NavBarLink>
@@ -25,9 +28,9 @@ const Navbar = async () => {
 
         {}
 
-        {userId ? (
+        {user ? (
           <NavBarLink href="/profile" icon={<UserIcon />} variant="outline">
-            {user?.fullName || "Profile"}
+            {metadata?.first_name + " " + metadata?.last_name || "Profile"}
           </NavBarLink>
         ) : (
           <NavBarLink href="/login" icon={<UserIcon />} variant="outline">
@@ -43,23 +46,17 @@ const Navbar = async () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="rounded-md p-4 space-y-3 bg-background w-[14rem]">
             <DropdownMenuItem>
-              <Link href="/" className="flex gap-2">
-                Home <Home />
-              </Link>
-            </DropdownMenuItem>
-            <hr />
-            <DropdownMenuItem>
               <Link
-                href={userId ? "/profile" : "/login"}
+                href={user ? "/profile" : "/sign-in"}
                 className="flex gap-2"
               >
-                {userId ? "Profile" : "Login"} <UserIcon />
+                {user ? "Profile" : "Login"} <UserIcon />
               </Link>
             </DropdownMenuItem>
             <hr />
             <DropdownMenuItem>
               <Link
-                href={userId ? "/resumes" : "/login"}
+                href={user ? "/resumes" : "/sign-in"}
                 className="flex gap-2"
               >
                 Resumes <Newspaper />

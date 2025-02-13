@@ -44,9 +44,19 @@ export const register = async (formData: FormData) => {
     const data = {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
+      fullName: formData.get("fullName") as string,
     };
 
-    const { error } = await supabase.auth.signUp(data);
+    const { error } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+      options: {
+        data: {
+          first_name: data.fullName.split(" ")[0],
+          last_name: data.fullName.split(" ")[1] || "",
+        },
+      },
+    });
 
     console.log("Error", error);
 

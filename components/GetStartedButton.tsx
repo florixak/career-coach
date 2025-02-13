@@ -11,9 +11,11 @@ const GetStartedButton = () => {
   };
 
   return (
-    <InteractiveHoverButton className="rounded-md" onClick={handleGetStarted}>
-      Get Started
-    </InteractiveHoverButton>
+    <div>
+      <InteractiveHoverButton className="rounded-md" onClick={handleGetStarted}>
+        Get Started
+      </InteractiveHoverButton>
+    </div>
   );
 };
 
