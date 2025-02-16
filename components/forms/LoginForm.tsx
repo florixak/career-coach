@@ -3,10 +3,11 @@
 import { login } from "@/action/auth";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 
 const LoginForm = () => {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,7 +18,8 @@ const LoginForm = () => {
 
     if (status === "SUCCESS") {
       toast.success("Logged in successfully");
-      router.push("/");
+      const to = searchParams.get("to");
+      router.push(to ? decodeURIComponent(to) : "/resumes");
     }
 
     if (status === "ERROR") {
