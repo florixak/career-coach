@@ -1,27 +1,20 @@
-import { getReviews } from "@/action/reviews";
-
 import { Button } from "../ui/button";
-import ReviewCard from "./ReviewCard";
+
 import Link from "next/link";
+import ReviewList from "./ReviewList";
 
-const ReviewSection = async () => {
-  const { reviews } = await getReviews();
-
-  const spliceReviews = (end: number) => reviews?.slice(0, end);
-
+const ReviewSection = () => {
   return (
     <section className="flex justify-center flex-col items-center px-10 gap-5 md:h-screen my-10">
       <h2 className="text-2xl font-bold">Reviews</h2>
-      <ul className="md:flex gap-5 flex-wrap max-w-[50rem] hidden">
-        {spliceReviews(8)?.map((review) => {
-          return <ReviewCard key={review.id} review={review} />;
-        })}
-      </ul>
-      <ul className="md:hidden flex flex-col gap-5">
-        {spliceReviews(4)?.map((review) => {
-          return <ReviewCard key={review.id} review={review} />;
-        })}
-      </ul>
+
+      <ReviewList limit={8} className="max-w-[50rem] hidden md:flex" />
+      <ReviewList
+        isMobile
+        limit={4}
+        className="flex flex-col gap-5 md:hidden"
+      />
+
       <Button variant="outline" className="p-5 font-normal">
         <Link href="/reviews">Read More</Link>
       </Button>
