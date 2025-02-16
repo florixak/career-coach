@@ -3,6 +3,7 @@ import ReviewSection from "@/components/reviews/ReviewSection";
 import Title from "@/components/Title";
 import PatternCard from "@/components/PatternCard";
 import Image from "next/image";
+import Pricing from "@/components/pricing/Pricing";
 
 export default function Home() {
   return (
@@ -32,8 +33,8 @@ export default function Home() {
           <PatternCard />
         </div>
       </section>
-
       <ReviewSection />
+      <Pricing />
     </>
   );
 }
