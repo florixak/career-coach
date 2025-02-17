@@ -1,6 +1,6 @@
 "use client";
 
-import { sendPromptToAi } from "@/action/resume";
+import { improveDescriptionWithAI } from "@/action/resume";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -10,12 +10,13 @@ const ResumeCreateForm = () => {
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
   const handleEditWithAI = async () => {
-    const prompt = descriptionRef.current?.value ?? "Edit with AI";
-    const response = await sendPromptToAi(
-      "Edit this profile description to look more elegant for resume, to be hired: " +
-        prompt
-    );
-    console.log(response);
+    const prompt = descriptionRef.current?.value || "";
+    const response = await improveDescriptionWithAI(prompt);
+    if (response.status === "SUCCESS") {
+      if (descriptionRef.current) {
+        descriptionRef.current.value = response.description || "";
+      }
+    }
   };
 
   return (

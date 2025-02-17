@@ -1,7 +1,12 @@
 "use server";
 
+import { improveDescriptionPrompt } from "@/utils/prompts";
 import { createClient } from "@/utils/supabase/server";
 import { Resume } from "@/utils/types";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export const createResume = async (formData: {
   full_name: string;
@@ -183,14 +188,41 @@ export const getResume = async (
   };
 };
 
-export const sendPromptToAi = async (prompt?: string) => {
-  const aiResponse = await fetch("http://localhost:3000/api/ai", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ prompt }),
-  });
-  console.log(aiResponse);
-  return aiResponse;
+export const improveDescriptionWithAI = async (
+  prompt: string
+): Promise<{
+  status: "SUCCESS" | "ERROR";
+  error?: string;
+  description?: string;
+}> => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return {
+      status: "ERROR",
+      error: "You are not logged in",
+    };
+  }
+
+  try {
+    const result = await model.generateContent(
+      improveDescriptionPrompt(prompt)
+    );
+    const response = result.response;
+    const improvedDescription = response.text().trim();
+    return {
+      status: "SUCCESS",
+      description: improvedDescription,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      status: "ERROR",
+      error: "Failed to generate improved description",
+    };
+  }
 };
