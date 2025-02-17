@@ -4,7 +4,7 @@ import { scaleUp } from "@/utils/animations";
 import AnimationWrapper from "../AnimationWrapper";
 import PricingCardText from "./PricingCardText";
 import PricingCardButton from "./PricingCardButton";
-import Loading from "@/app/loading";
+import LoadingSticks from "../LoadingSticks";
 
 type PricingCardProps = PricingPlan & {
   index: number;
@@ -32,7 +32,7 @@ const PricingCard = ({
         </div>
       )}
       <PricingCardText name={name} price={price} features={features} />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingSticks />}>
         <PricingCardButton cta={cta} href={href} />
       </Suspense>
     </AnimationWrapper>
