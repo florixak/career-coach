@@ -11,3 +11,6 @@ export function formatCurrency(amount: number) {
     currency: "USD",
   }).format(amount);
 }
+
+export const delay = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
