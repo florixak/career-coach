@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { PricingPlan } from "./Pricing";
-import { TextShimmer } from "../ui/text-shimmer";
 import { scaleUp } from "@/utils/animations";
 import AnimationWrapper from "../AnimationWrapper";
 import PricingCardText from "./PricingCardText";
