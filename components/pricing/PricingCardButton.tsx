@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { PricingPlan } from "./Pricing";
+import { PricingPlan } from "./PricingSection";
 import { createClient } from "@/utils/supabase/server";
 
 type PricingCardButtonProps = {

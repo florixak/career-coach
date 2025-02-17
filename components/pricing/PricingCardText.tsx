@@ -1,5 +1,5 @@
 import { formatCurrency } from "@/lib/utils";
-import { PricingPlan } from "./Pricing";
+import { PricingPlan } from "./PricingSection";
 
 type PricingCardTextProps = {
   name: PricingPlan["name"];

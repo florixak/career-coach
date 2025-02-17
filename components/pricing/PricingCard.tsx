@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { PricingPlan } from "./Pricing";
+import { PricingPlan } from "./PricingSection";
 import { scaleUp } from "@/utils/animations";
 import AnimationWrapper from "../AnimationWrapper";
 import PricingCardText from "./PricingCardText";
