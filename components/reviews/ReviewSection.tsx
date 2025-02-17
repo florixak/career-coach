@@ -1,17 +1,20 @@
 import { Suspense } from "react";
 import LoadingSticks from "../LoadingSticks";
 import Reviews from "./Reviews";
+import Section from "../Section";
 
 const ReviewSection = () => {
   return (
-    <section className="flex justify-center flex-col items-center px-10 gap-5 md:h-screen my-10">
-      <h2 className="text-2xl font-bold">Reviews</h2>
+    <Section
+      title="Reviews"
+      description="What our customers are saying about us"
+    >
       <div className="min-h-[31rem]">
         <Suspense fallback={<LoadingSticks />}>
           <Reviews className="max-w-[50rem]" />
         </Suspense>
       </div>
-    </section>
+    </Section>
   );
 };
 
