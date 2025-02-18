@@ -33,3 +33,9 @@ export type Review = {
   review: string;
   stars: number;
 };
+
+export type Action<T> = {
+  status?: "SUCCESS" | "ERROR";
+  error?: string;
+  [key: string]: T | string | undefined;
+};

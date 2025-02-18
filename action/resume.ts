@@ -2,7 +2,7 @@
 
 import { improveDescriptionPrompt } from "@/utils/prompts";
 import { createClient } from "@/utils/supabase/server";
-import { Resume } from "@/utils/types";
+import { Action, Resume } from "@/utils/types";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
@@ -114,11 +114,7 @@ export const deleteResume = async (id: string) => {
   //   redirect("/");
 };
 
-export const getResumes = async (): Promise<{
-  status: "SUCCESS" | "ERROR";
-  error?: string;
-  resumes?: Resume[];
-}> => {
+export const getResumes = async (): Promise<Action<Resume[]>> => {
   const supabase = await createClient();
 
   const {
@@ -150,13 +146,7 @@ export const getResumes = async (): Promise<{
   };
 };
 
-export const getResume = async (
-  id: string
-): Promise<{
-  status: "SUCCESS" | "ERROR";
-  error?: string;
-  resume?: Resume;
-}> => {
+export const getResume = async (id: string): Promise<Action<Resume>> => {
   const supabase = await createClient();
 
   const {
@@ -189,14 +179,16 @@ export const getResume = async (
 };
 
 export const improveDescriptionWithAI = async (
-  prompt: string
-): Promise<{
-  status: "SUCCESS" | "ERROR";
-  error?: string;
-  description?: string;
-}> => {
-  const supabase = await createClient();
+  prompt: string | null
+): Promise<Action<string>> => {
+  if (!prompt) {
+    return {
+      status: "ERROR",
+      error: "Prompt is required",
+    };
+  }
 
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
