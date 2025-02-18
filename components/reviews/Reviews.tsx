@@ -1,7 +1,6 @@
 import { getReviews } from "@/action/reviews";
 import React from "react";
 import ReviewCard from "./ReviewCard";
-import { delay } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
@@ -10,7 +9,7 @@ type ReviewsProps = {
 };
 
 const Reviews = async ({ className }: ReviewsProps) => {
-  await delay(5000);
+  //await delay(5000);
 
   const { reviews, error } = await getReviews();
 
