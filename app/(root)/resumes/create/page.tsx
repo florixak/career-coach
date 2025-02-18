@@ -1,4 +1,5 @@
 import ResumeCreateForm from "@/components/forms/ResumeCreateForm";
+import Section from "@/components/Section";
 import { createClient } from "@/utils/supabase/server";
 import { notFound } from "next/navigation";
 
@@ -13,14 +14,13 @@ const Page = async () => {
   }
 
   return (
-    <section className="flex-center flex-col gap-5">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold">Create Resume</h1>
-        <p>Fill out the form below to create a new resume</p>
-      </div>
-
+    <Section
+      className="flex-center flex-col gap-5 md:mt-20"
+      title="Create Resume"
+      description="Create a new resume"
+    >
       <ResumeCreateForm />
-    </section>
+    </Section>
   );
 };
 
