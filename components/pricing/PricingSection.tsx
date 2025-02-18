@@ -24,7 +24,8 @@ const pricingPlans: PricingPlan[] = [
     features: [
       "All Basic features",
       "5 resume templates",
-      "AI suggestions",
+      "Improve with AI",
+      "Quiz for interview prep",
       "Cover letter builder",
     ],
     cta: "Get Pro",
