@@ -29,7 +29,7 @@ const pricingPlans: PricingPlan[] = [
       "Cover letter builder",
     ],
     cta: "Get Pro",
-    href: "?to=subscribtions",
+    href: "?to=subscriptions",
     popular: true,
   },
   {
