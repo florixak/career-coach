@@ -22,7 +22,7 @@ const PricingCard = ({
   return (
     <AnimationWrapper
       animation={scaleUp}
-      className={`relative flex flex-col gap-5 p-5 border rounded-md w-[18rem] justify-between ${
+      className={`relative flex flex-col gap-5 p-5 border rounded-md w-[18rem] h-[20rem] justify-between ${
         index % 2 === 0 ? "bg-muted/50 z-10" : "bg-primary-foreground"
       }`}
     >
