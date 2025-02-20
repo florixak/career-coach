@@ -9,14 +9,15 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export const createResume = async (formData: {
-  full_name: string;
-  description: string;
-  education: string[];
-  work_experience: string[];
-  skills: string[];
-  contact: string[];
-  languages: string[];
-}) => {
+  fullName: Resume["full_name"];
+  description: Resume["description"];
+  education: Resume["education"];
+  workExperience: Resume["experience"];
+  skills: Resume["skills"];
+  contact: Resume["contact"];
+  languages: Resume["languages"];
+  image: Resume["image"];
+}): Promise<Action<Resume>> => {
   const supabase = await createClient();
 
   const {
@@ -35,7 +36,10 @@ export const createResume = async (formData: {
     ...formData,
   };
 
-  const { error } = await supabase.from("resumes").insert(data);
+  const { data: resumes, error } = await supabase
+    .from("resumes")
+    .insert(data)
+    .select();
 
   if (error) {
     return {
@@ -44,8 +48,10 @@ export const createResume = async (formData: {
     };
   }
 
-  //   revalidatePath("/", "layout");
-  //   redirect("/");
+  return {
+    status: "SUCCESS",
+    resume: resumes[0],
+  };
 };
 
 export const updateResume = async (formData: FormData) => {

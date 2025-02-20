@@ -7,7 +7,7 @@ export type Resume = {
   skills: string[];
   contact: string[];
   languages: string[];
-  image_url: string;
+  image: File;
   created_at: string;
   updated_at: string;
 };

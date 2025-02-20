@@ -1,5 +1,6 @@
 import { getResume } from "@/action/resume";
 import { type Resume } from "@/utils/types";
+import Image from "next/image";
 
 type ResumeProps = {
   resumeId: Resume["id"];
@@ -26,12 +27,16 @@ const Resume = async ({ resumeId }: ResumeProps) => {
     contact,
     languages,
     image_url,
-  } = resumeData;
+  } = resumeData as Resume;
 
   return (
     <section className="h-full p-4 rounded-md bg-white text-black">
       <div className="flex flex-row items-center gap-5">
-        <img src={image_url} alt={full_name} className="size-24 rounded-full" />
+        <Image
+          src={image_url}
+          alt={full_name}
+          className="size-24 rounded-full"
+        />
         <div>
           <h2 className="text-2xl">{full_name}</h2>
           <p className="text-base">{description} dsafs</p>
