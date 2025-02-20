@@ -26,15 +26,20 @@ export const createResumeSchema = z.object({
   description: z
     .string()
     .min(10, { message: "Description must be at least 10 characters" }),
-  education: z.array(z.string()),
-  workExperience: z.array(z.string()),
-  skills: z.array(z.string()),
-  contact: z.array(z.string()),
-  languages: z.array(z.string()),
-  bgColor: z.string().includes("#", {
-    message: "Background color must be a valid hex color",
+  education: z.array(z.string()).min(1, {
+    message: "Education must have at least 1 item",
   }),
-  textColor: z.string().includes("#", {
-    message: "Text color must be a valid hex color",
+  workExperience: z.array(z.string()).min(1, {
+    message: "Work experience must have at least 1 item",
   }),
+  skills: z.array(z.string()).min(1, {
+    message: "Skills must have at least 1 item",
+  }),
+  contact: z.array(z.string()).min(1, {
+    message: "Contact must have at least 1 item",
+  }),
+  languages: z
+    .array(z.string())
+    .min(1, { message: "Languages must have at least 1 item" }),
+  image: z.string().optional(),
 });
