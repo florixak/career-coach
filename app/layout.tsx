@@ -58,7 +58,11 @@ const workSans = localFont({
 export const metadata: Metadata = {
   title: "Career Coach | Generate a resume in minutes and land your dream job",
   description:
-    "Career Coach is a resume builder that helps you create a professional resume in minutes.",
+    "Career Coach is a resume builder that helps you create a professional resume in minutes. Start landing your dream job today! Choose from multiple resume templates and download your resume in PDF format. Improve your resume with AI and get ready for your job interview with our quiz.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
+  openGraph: {
+    images: "/resume.webp",
+  },
 };
 
 export default function RootLayout({
