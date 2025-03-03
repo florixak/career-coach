@@ -39,3 +39,20 @@ export type Action<T> = {
   error?: string;
   [key: string]: T | string | undefined;
 };
+
+export type ResumeFormStep = {
+  formData: ResumeFormData;
+  setFormData: (data: ResumeFormData) => void;
+  errors: Record<string, string>;
+};
+
+export type ResumeFormData = {
+  image: File | undefined;
+  fullName: string;
+  description: string;
+  education: Education[];
+  workExperience: Experience[];
+  skills: string[];
+  contact: string[];
+  languages: string[];
+};
