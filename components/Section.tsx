@@ -11,7 +11,7 @@ const Section = ({ title, description, children, className }: SectionProps) => {
   return (
     <section
       className={cn(
-        "h-full md:flex-center items-center flex-col px-10 gap-5",
+        "h-full md:flex-center items-center flex-col px-10 gap-5 py-10 md:py-20",
         className
       )}
     >
