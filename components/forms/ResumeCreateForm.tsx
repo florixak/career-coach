@@ -1,33 +1,31 @@
 "use client";
 
-import { createResume, improveDescriptionWithAI } from "@/action/resume";
+import { createResume } from "@/action/resume";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { useActionState, useRef, useState } from "react";
-import { Wand } from "lucide-react";
+import { useActionState, useState } from "react";
 import toast from "react-hot-toast";
 import { createResumeSchema } from "@/utils/validation";
-import { Resume } from "@/utils/types";
-import { useRouter } from "next/navigation";
+import { Resume, ResumeFormData } from "@/utils/types";
+import { useRouter, useSearchParams } from "next/navigation";
 import { z } from "zod";
+import Page1 from "./resumeCreate/Page1";
+import Page2 from "./resumeCreate/Page2";
+import Page3 from "./resumeCreate/Page3";
 
 const ResumeCreateForm = () => {
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
-
-  const handleImproveWithAI = async () => {
-    const prompt = descriptionRef.current?.value || null;
-    const response = await improveDescriptionWithAI(prompt);
-    if (response.status === "SUCCESS") {
-      if (descriptionRef.current) {
-        descriptionRef.current.value = response.description || "";
-      }
-    }
-
-    toast[response.status === "SUCCESS" ? "success" : "error"](response.error);
-  };
+  const searchParams = useSearchParams();
+  const [formData, setFormData] = useState<ResumeFormData>({
+    image: undefined,
+    fullName: "",
+    description: "",
+    education: [],
+    workExperience: [],
+    skills: [],
+    contact: [],
+    languages: [],
+  });
 
   const handleFormSubmit = async (
     prevState: { status: string; error: string },
@@ -65,10 +63,19 @@ const ResumeCreateForm = () => {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
         setErrors(fieldErrors as unknown as Record<string, string>);
-        return { ...prevState, status: "ERROR" };
       }
       return { ...prevState, status: "ERROR" };
     }
+  };
+
+  const currentStep = parseInt(searchParams.get("page") || "1", 10) || 1;
+
+  const handleNext = () => {
+    router.push(`?page=${currentStep + 1}`);
+  };
+
+  const handlePrev = () => {
+    router.push(`?page=${currentStep - 1}`);
   };
 
   const [, formAction, isPending] = useActionState(handleFormSubmit, {
@@ -78,77 +85,32 @@ const ResumeCreateForm = () => {
 
   return (
     <form action={formAction} className="flex flex-col gap-2 max-w-sm">
-      <div>
-        <Input type="file" name="image" accept="image/*" placeholder="Image" />
-        {errors.image && (
-          <span className="text-red-500 text-sm">{errors.image}</span>
+      {currentStep === 1 && (
+        <Page1 formData={formData} setFormData={setFormData} errors={errors} />
+      )}
+      {currentStep === 2 && (
+        <Page2 formData={formData} setFormData={setFormData} errors={errors} />
+      )}
+      {currentStep === 3 && (
+        <Page3 formData={formData} setFormData={setFormData} errors={errors} />
+      )}
+      <div className="flex flex-row gap-2 justify-between">
+        {currentStep > 1 && (
+          <Button type="button" onClick={handlePrev} variant="outline">
+            Prev
+          </Button>
+        )}
+        {currentStep < 3 && (
+          <Button type="button" onClick={handleNext} variant="outline">
+            Next
+          </Button>
+        )}
+        {currentStep === 3 && (
+          <Button type="submit" variant="outline" disabled={isPending}>
+            Create
+          </Button>
         )}
       </div>
-
-      <div>
-        <Input type="text" name="fullName" placeholder="Full name" />
-        {errors.fullName && (
-          <span className="text-red-500 text-sm">{errors.fullName}</span>
-        )}
-      </div>
-      <div className="flex flex-row gap-2 w-full">
-        <Textarea
-          name="description"
-          placeholder="Description"
-          className="max-h-[10rem]"
-          ref={descriptionRef}
-        />
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handleImproveWithAI}
-          className="relative group"
-        >
-          <span className="absolute left-12 top-3 bottom-0 items-center pl-2 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            Improve with AI
-          </span>
-          <Wand size={16} />
-        </Button>
-      </div>
-
-      <div>
-        <Input name="education" placeholder="Education" />
-        {errors.education && (
-          <span className="text-red-500 text-sm">{errors.education}</span>
-        )}
-      </div>
-
-      <div>
-        <Input name="workExperience" placeholder="Work experience" />
-        {errors.workExperience && (
-          <span className="text-red-500 text-sm">{errors.workExperience}</span>
-        )}
-      </div>
-
-      <div>
-        <Input name="skills" placeholder="Skills" />
-        {errors.skills && (
-          <span className="text-red-500 text-sm">{errors.skills}</span>
-        )}
-      </div>
-
-      <div>
-        <Input name="contact" placeholder="Contact" />
-        {errors.contact && (
-          <span className="text-red-500 text-sm">{errors.contact}</span>
-        )}
-      </div>
-
-      <div>
-        <Input name="languages" placeholder="Languages" />
-        {errors.languages && (
-          <span className="text-red-500 text-sm">{errors.languages}</span>
-        )}
-      </div>
-
-      <Button type="submit" variant="outline" disabled={isPending}>
-        Create
-      </Button>
     </form>
   );
 };
