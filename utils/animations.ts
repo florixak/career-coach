@@ -12,3 +12,15 @@ export const scaleUp = {
     scale: 0.7,
   },
 };
+
+export const showUp = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
