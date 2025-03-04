@@ -19,7 +19,7 @@ const Page1 = ({ formData, setFormData, errors }: ResumeFormStep) => {
       }
     }
     toast[response.status === "SUCCESS" ? "success" : "error"](
-      response.message
+      response.message || response.error
     );
   };
 
@@ -54,23 +54,31 @@ const Page1 = ({ formData, setFormData, errors }: ResumeFormStep) => {
         )}
       </div>
 
-      <div className="flex flex-row gap-2 w-full">
+      <div className="flex flex-row gap-2 w-full relative">
         <Textarea
           name="description"
           placeholder="Description"
-          className="max-h-[10rem]"
+          className="max-h-[16rem] min-h-[10rem] w-full"
           ref={descriptionRef}
-        />
+          onChange={(e) =>
+            setFormData({ ...formData, description: e.target.value })
+          }
+        ></Textarea>
         <Button
           type="button"
           variant="outline"
           onClick={handleImproveWithAI}
-          className="relative group"
+          className="group absolute opacity-70 right-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
         >
-          <span className="absolute left-12 top-3 bottom-0 items-center pl-2 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            Improve with AI
-          </span>
-          <Wand size={16} />
+          <div className="flex flex-row gap-1 items-center">
+            <span className="absolute left-12 items-center pl-2 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+              Improve with AI
+            </span>
+            <Wand
+              size={16}
+              className="opacity-40 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+            />
+          </div>
         </Button>
       </div>
     </>
