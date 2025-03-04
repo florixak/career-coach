@@ -11,6 +11,7 @@ import { z } from "zod";
 import Page1 from "./resumeCreate/Page1";
 import Page2 from "./resumeCreate/Page2";
 import Page3 from "./resumeCreate/Page3";
+import { Progress } from "../ui/progress";
 
 const ResumeCreateForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -78,7 +79,7 @@ const ResumeCreateForm = () => {
     router.push(`?page=${currentStep - 1}`);
   };
 
-  const [, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });
@@ -86,8 +87,9 @@ const ResumeCreateForm = () => {
   return (
     <form
       action={formAction}
-      className="flex flex-col gap-2 max-w-[25rem] w-full"
+      className="flex flex-col gap-8 max-w-[25rem] w-full"
     >
+      <Progress value={currentStep === 1 ? 33 : currentStep === 2 ? 66 : 100} />
       <div className="min-h-[15rem] flex flex-col gap-2">
         {currentStep === 1 && (
           <Page1
@@ -113,21 +115,25 @@ const ResumeCreateForm = () => {
       </div>
 
       <div className="flex flex-row gap-2 justify-between">
-        {currentStep > 1 && (
-          <Button type="button" onClick={handlePrev} variant="outline">
-            Prev
-          </Button>
-        )}
-        {currentStep < 3 && (
-          <Button type="button" onClick={handleNext} variant="outline">
-            Next
-          </Button>
-        )}
-        {currentStep === 3 && (
-          <Button type="submit" variant="outline" disabled={isPending}>
-            Create
-          </Button>
-        )}
+        <Button
+          type="button"
+          onClick={handlePrev}
+          variant="outline"
+          disabled={isPending || currentStep === 1}
+        >
+          Prev
+        </Button>
+        <Button type="submit" variant="outline" disabled={isPending}>
+          Create
+        </Button>
+        <Button
+          type="button"
+          onClick={handleNext}
+          variant="outline"
+          disabled={isPending || currentStep === 3}
+        >
+          Next
+        </Button>
       </div>
     </form>
   );
