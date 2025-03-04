@@ -21,25 +21,41 @@ export const registerFormSchema = z
 
 export const createResumeSchema = z.object({
   fullName: z
-    .string()
+    .string({ message: "Name must be a string" })
     .min(3, { message: "Name must be at least 3 characters" }),
   description: z
     .string()
     .min(10, { message: "Description must be at least 10 characters" }),
-  education: z.array(z.string()).min(1, {
-    message: "Education must have at least 1 item",
-  }),
-  workExperience: z.array(z.string()).min(1, {
-    message: "Work experience must have at least 1 item",
-  }),
-  skills: z.array(z.string()).min(1, {
-    message: "Skills must have at least 1 item",
-  }),
-  contact: z.array(z.string()).min(1, {
-    message: "Contact must have at least 1 item",
-  }),
+  education: z
+    .array(z.string(), {
+      message: "Education must have at least 1 item",
+    })
+    .min(1, {
+      message: "Education must have at least 1 item",
+    }),
+  workExperience: z
+    .array(z.string(), {
+      message: "Work experience must have at least 1 item",
+    })
+    .min(1, {
+      message: "Work experience must have at least 1 item",
+    }),
+  skills: z
+    .array(z.string(), { message: "Skills must have at least 1 item" })
+    .min(1, {
+      message: "Skills must have at least 1 item",
+    }),
+  contact: z
+    .array(z.string(), {
+      message: "Contact must have at least 1 item",
+    })
+    .min(1, {
+      message: "Contact must have at least 1 item",
+    }),
   languages: z
-    .array(z.string())
+    .array(z.string(), {
+      message: "Languages must have at least 1 item",
+    })
     .min(1, { message: "Languages must have at least 1 item" }),
-  image: z.string().optional(),
+  image: z.instanceof(File, { message: "Image must be a file" }),
 });
