@@ -84,16 +84,34 @@ const ResumeCreateForm = () => {
   });
 
   return (
-    <form action={formAction} className="flex flex-col gap-2 max-w-sm">
-      {currentStep === 1 && (
-        <Page1 formData={formData} setFormData={setFormData} errors={errors} />
-      )}
-      {currentStep === 2 && (
-        <Page2 formData={formData} setFormData={setFormData} errors={errors} />
-      )}
-      {currentStep === 3 && (
-        <Page3 formData={formData} setFormData={setFormData} errors={errors} />
-      )}
+    <form
+      action={formAction}
+      className="flex flex-col gap-2 max-w-[25rem] w-full"
+    >
+      <div className="min-h-[15rem] flex flex-col gap-2">
+        {currentStep === 1 && (
+          <Page1
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        )}
+        {currentStep === 2 && (
+          <Page2
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        )}
+        {currentStep === 3 && (
+          <Page3
+            formData={formData}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        )}
+      </div>
+
       <div className="flex flex-row gap-2 justify-between">
         {currentStep > 1 && (
           <Button type="button" onClick={handlePrev} variant="outline">
