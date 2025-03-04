@@ -70,8 +70,8 @@ const Page1 = ({ formData, setFormData, errors }: ResumeFormStep) => {
           onClick={handleImproveWithAI}
           className="group absolute opacity-70 right-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
         >
-          <div className="flex flex-row gap-1 items-center">
-            <span className="absolute left-12 items-center pl-2 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+          <div className="flex flex-row items-center">
+            <span className="absolute left-12 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:left-14 transition-all duration-500 ease-in-out">
               Improve with AI
             </span>
             <Wand
