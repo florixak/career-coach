@@ -1,6 +1,5 @@
 import { Input } from "@/components/ui/input";
 import { ResumeFormStep } from "@/utils/types";
-import React from "react";
 
 const Page2 = ({ formData, setFormData, errors }: ResumeFormStep) => {
   return (
