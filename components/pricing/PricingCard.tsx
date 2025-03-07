@@ -19,11 +19,20 @@ const PricingCard = ({
   popular,
   index,
 }: PricingCardProps) => {
+  const cardAnimation =
+    index === 1
+      ? {
+          ...scaleUp,
+          initial: { scale: 0.8 },
+          whileInView: { scale: 1.1 },
+          whileHover: { scale: 1.2 },
+        }
+      : scaleUp;
   return (
     <AnimationWrapper
-      animation={scaleUp}
-      className={`relative flex flex-col gap-5 p-5 border rounded-md w-[18rem] h-[20rem] justify-between ${
-        index % 2 === 0 ? "bg-muted/50 z-10" : "bg-primary-foreground"
+      animation={cardAnimation}
+      className={`relative flex flex-col gap-5 z-10 p-5 border rounded-md w-[18rem] h-[20rem] justify-between ${
+        index === 1 ? "bg-muted/50 z-10 scale-110" : "bg-primary-foreground"
       }`}
     >
       {popular && (

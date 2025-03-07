@@ -53,9 +53,9 @@ const PricingSection = () => {
       description="Choose a plan that works for you"
       className="bg-muted/50"
     >
-      <div className="flex flex-col md:flex-row gap-10 items-center">
+      <div className="flex flex-col md:flex-row gap-10 items-center my-10">
         {pricingPlans.map((plan, index) => (
-          <PricingCard key={plan.name} {...plan} index={index + 1} />
+          <PricingCard key={plan.name} {...plan} index={index} />
         ))}
       </div>
     </Section>
