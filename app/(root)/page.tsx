@@ -4,11 +4,19 @@ import Title from "@/components/Title";
 import PatternCard from "@/components/PatternCard";
 import Image from "next/image";
 import PricingSection from "@/components/pricing/PricingSection";
+import { Particles } from "@/components/magicui/particles";
 
 export default function Home() {
   return (
     <>
-      <section className="container flex-center flex-col space-x-10 md:flex-row">
+      <Particles
+        className="absolute inset-0 z-0"
+        quantity={100}
+        ease={80}
+        color={"#ffffff"}
+        refresh
+      />
+      <section className="relative container flex-center flex-col space-x-10 md:flex-row">
         <Image
           src="/logo.webp"
           alt="Career Coach"
