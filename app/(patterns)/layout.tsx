@@ -1,4 +1,4 @@
-import BackToResumes from "@/components/BackToResumes";
+import BackToResumes from "@/components/resumes/BackToResumes";
 
 export default function Layout({
   children,
