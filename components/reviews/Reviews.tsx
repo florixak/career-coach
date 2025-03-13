@@ -24,12 +24,12 @@ const Reviews = async ({ className }: ReviewsProps) => {
   return (
     <section className="flex items-center flex-col gap-5">
       <ul className={`relative flex flex-wrap ${className}`}>
-        <Marquee pauseOnHover className="duration-[20s]">
+        <Marquee pauseOnHover className="duration-[40s]">
           {firstReviews?.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
         </Marquee>
-        <Marquee pauseOnHover reverse className="duration-[20s]">
+        <Marquee pauseOnHover reverse className="duration-[40s]">
           {secondReviews?.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
