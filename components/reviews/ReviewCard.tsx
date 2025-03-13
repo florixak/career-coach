@@ -1,7 +1,5 @@
 import { Review } from "@/utils/types";
 import ReviewText from "./ReviewText";
-import AnimationWrapper from "../AnimationWrapper";
-import { scaleUp } from "@/utils/animations";
 import { Star, StarOff } from "lucide-react";
 
 type ReviewCardProps = {
@@ -10,10 +8,7 @@ type ReviewCardProps = {
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
-    <AnimationWrapper
-      className="flex flex-col gap-2 border rounded-md p-5 flex-1"
-      animation={scaleUp}
-    >
+    <section className="flex flex-col gap-2 border rounded-md p-5 flex-1">
       <div className="flex flex-row gap-2 items-center">
         <h3 className="font-semibold">{review.name}</h3>
         <div className="rounded-md bg-muted p-1 flex">
@@ -30,7 +25,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         </div>
       </div>
       <ReviewText review={review.review} />
-    </AnimationWrapper>
+    </section>
   );
 };
 
