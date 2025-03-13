@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div className="flex-center text-white">
-      {resume ? resume?.resume?.full_name : "No resume found"}
+      {resume ? "Name" : "No resume found"}
     </div>
   );
 };
