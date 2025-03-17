@@ -2,9 +2,14 @@ import { getResumes } from "@/action/resume";
 import ResumesList from "@/components/resumes/ResumesList";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/server";
+import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Career Coach | Your Resumes",
+};
 
 const Page = async () => {
   const supabase = await createClient();

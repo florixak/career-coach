@@ -1,6 +1,11 @@
 import LoginForm from "@/components/forms/LoginForm";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Career Coach | Login",
+};
 
 const Page = () => {
   return (

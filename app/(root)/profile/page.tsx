@@ -1,7 +1,12 @@
 import ButtonLogout from "@/components/ButtonLogout";
 import { createClient } from "@/utils/supabase/server";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Career Coach | Your Profile",
+};
 
 const Page = async () => {
   const supabase = await createClient();
