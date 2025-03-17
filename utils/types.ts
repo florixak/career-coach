@@ -34,10 +34,9 @@ export type Review = {
   stars: number;
 };
 
-export type Action<T> = {
+export type Action = {
   status?: "SUCCESS" | "ERROR";
   error?: string;
-  [key: string]: T | string | undefined;
 };
 
 export type ResumeFormStep = {

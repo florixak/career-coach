@@ -17,7 +17,7 @@ export const createResume = async (formData: {
   contact: Resume["contact"];
   languages: Resume["languages"];
   image: Resume["image"];
-}): Promise<Action<Resume>> => {
+}): Promise<Action & { resume: Resume }> => {
   const supabase = await createClient();
 
   const {
@@ -28,6 +28,7 @@ export const createResume = async (formData: {
     return {
       status: "ERROR",
       error: "You are not logged in",
+      resume: {} as Resume,
     };
   }
 
@@ -45,6 +46,7 @@ export const createResume = async (formData: {
     return {
       status: "ERROR",
       error: error.message,
+      resume: {} as Resume,
     };
   }
 
@@ -120,7 +122,7 @@ export const deleteResume = async (id: string) => {
   //   redirect("/");
 };
 
-export const getResumes = async (): Promise<Action<Resume[]>> => {
+export const getResumes = async (): Promise<Action & { resumes: Resume[] }> => {
   const supabase = await createClient();
 
   const {
@@ -131,6 +133,7 @@ export const getResumes = async (): Promise<Action<Resume[]>> => {
     return {
       status: "ERROR",
       error: "You are not logged in",
+      resumes: [],
     };
   }
 
@@ -143,6 +146,7 @@ export const getResumes = async (): Promise<Action<Resume[]>> => {
     return {
       status: "ERROR",
       error: error.message,
+      resumes: [],
     };
   }
 
@@ -152,7 +156,9 @@ export const getResumes = async (): Promise<Action<Resume[]>> => {
   };
 };
 
-export const getResume = async (id: string): Promise<Action<Resume>> => {
+export const getResume = async (
+  id: string
+): Promise<Action & { resume: Resume }> => {
   const supabase = await createClient();
 
   const {
@@ -163,6 +169,7 @@ export const getResume = async (id: string): Promise<Action<Resume>> => {
     return {
       status: "ERROR",
       error: "You are not logged in",
+      resume: {} as Resume,
     };
   }
 
@@ -175,6 +182,7 @@ export const getResume = async (id: string): Promise<Action<Resume>> => {
     return {
       status: "ERROR",
       error: error.message,
+      resume: {} as Resume,
     };
   }
 
@@ -186,11 +194,12 @@ export const getResume = async (id: string): Promise<Action<Resume>> => {
 
 export const improveDescriptionWithAI = async (
   prompt: string | null
-): Promise<Action<string>> => {
+): Promise<Action & { description: string }> => {
   if (!prompt) {
     return {
       status: "ERROR",
       error: "Prompt is required",
+      description: "",
     };
   }
 
@@ -203,6 +212,7 @@ export const improveDescriptionWithAI = async (
     return {
       status: "ERROR",
       error: "You are not logged in",
+      description: "",
     };
   }
 
@@ -221,6 +231,7 @@ export const improveDescriptionWithAI = async (
     return {
       status: "ERROR",
       error: "Failed to generate improved description",
+      description: "",
     };
   }
 };
