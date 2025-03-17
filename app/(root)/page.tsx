@@ -1,10 +1,10 @@
 import GetStartedButton from "@/components/GetStartedButton";
 import ReviewSection from "@/components/reviews/ReviewSection";
 import Title from "@/components/Title";
-import PatternCard from "@/components/PatternCard";
 import Image from "next/image";
 import PricingSection from "@/components/pricing/PricingSection";
 import { Particles } from "@/components/magicui/particles";
+import ToolsSection from "@/components/ToolsSection";
 
 export default function Home() {
   return (
@@ -31,16 +31,7 @@ export default function Home() {
           <GetStartedButton />
         </article>
       </section>
-      <section className="flex-center flex-col bg-muted/50 px-10 gap-5">
-        <h2 className="text-2xl font-bold">Resume patterns</h2>
-        <p className="text-muted-foreground">
-          Choose from a variety of resume patterns to make your resume stand out
-          from the crowd.
-        </p>
-        <div className="flex flex-row gap-5">
-          <PatternCard />
-        </div>
-      </section>
+      <ToolsSection />
       <ReviewSection />
       <PricingSection />
     </>
