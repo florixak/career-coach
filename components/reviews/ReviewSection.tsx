@@ -7,11 +7,11 @@ const ReviewSection = () => {
   return (
     <Section
       title="Reviews"
-      description="What our customers are saying about us"
+      description="Read what our customers have to say about us."
     >
       <div className="min-h-[31rem]">
         <Suspense fallback={<LoadingSticks />}>
-          <Reviews className="max-w-[50rem]" />
+          <Reviews className="w-full md:max-w-[50rem] xl:max-w-[80rem] transition-all duration-1000" />
         </Suspense>
       </div>
     </Section>
