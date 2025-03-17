@@ -18,7 +18,9 @@ const Section = ({ title, description, children, className }: SectionProps) => {
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-2xl font-bold">{title}</h2>
         {description ? (
-          <p className="text-muted-foreground">{description}</p>
+          <p className="text-muted-foreground max-w-lg text-center">
+            {description}
+          </p>
         ) : null}
       </div>
 
