@@ -22,18 +22,23 @@ const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    try {
+      const formData = new FormData(e.currentTarget);
 
-    const { status, error } = await login(formData);
+      const { status, error } = await login(formData);
 
-    if (status === "SUCCESS") {
-      toast.success("Logged in successfully");
-      const to = searchParams.get("to");
-      router.push(to ? decodeURIComponent(to) : "/resumes");
-    }
+      if (status === "SUCCESS") {
+        toast.success("Logged in successfully");
+        const to = searchParams.get("to");
+        router.push(to ? decodeURIComponent(to) : "/resumes");
+      }
 
-    if (status === "ERROR") {
-      toast.error(error);
+      if (status === "ERROR") {
+        toast.error(error);
+      }
+    } catch (error) {
+      console.log("Error logging in", error);
+      toast.error("Unexpected error occurred");
     }
   };
   return (
