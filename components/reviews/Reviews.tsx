@@ -4,6 +4,7 @@ import ReviewCard from "./ReviewCard";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Marquee } from "../magicui/marquee";
+import { cn } from "@/lib/utils";
 
 type ReviewsProps = {
   className?: string;
@@ -23,20 +24,20 @@ const Reviews = async ({ className }: ReviewsProps) => {
 
   return (
     <section className="flex items-center flex-col gap-5">
-      <ul className={`relative flex flex-wrap ${className}`}>
-        <Marquee pauseOnHover className="duration-[40s]">
+      <div className={cn("relative flex flex-col", className)}>
+        <Marquee pauseOnHover className="[--duration:120s]">
           {firstReviews?.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
         </Marquee>
-        <Marquee pauseOnHover reverse className="duration-[40s]">
+        <Marquee pauseOnHover reverse className="[--duration:120s] w-full">
           {secondReviews?.map((review) => (
             <ReviewCard key={review.id} review={review} />
           ))}
         </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-background"></div>
-      </ul>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[6%] bg-gradient-to-r from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-[6%] bg-gradient-to-l from-background"></div>
+      </div>
       <Link href="/reviews">
         <Button variant="outline" className="p-5 font-normal">
           Read More
