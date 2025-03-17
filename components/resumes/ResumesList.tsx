@@ -2,7 +2,7 @@ import { type Resume } from "@/utils/types";
 import ResumeCard from "./ResumeCard";
 
 type ResumesListProps = {
-  resumes: Resume[];
+  resumes: Resume[] | undefined;
 };
 
 const ResumesList = ({ resumes }: ResumesListProps) => {
