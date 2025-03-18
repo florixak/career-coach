@@ -24,7 +24,12 @@ const Reviews = async ({ className }: ReviewsProps) => {
 
   return (
     <section className="flex items-center flex-col gap-5">
-      <div className={cn("relative flex flex-col", className)}>
+      <div
+        className={cn(
+          "relative flex flex-col w-full md:max-w-[50rem] lg:max-w-[60rem] xl:max-w-[70rem] 2xl:max-w-[80rem] transition-all duration-1000",
+          className
+        )}
+      >
         <Marquee pauseOnHover className="[--duration:120s]">
           {firstReviews?.map((review) => (
             <ReviewCard key={review.id} review={review} />
