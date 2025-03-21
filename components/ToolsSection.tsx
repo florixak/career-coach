@@ -30,7 +30,7 @@ const ToolsSection = () => {
     >
       <div className="flex flex-col md:flex-row gap-10 items-center my-10">
         {tools.map((tool, index) => (
-          <Card key={index} className="max-w-xs h-[20rem]">
+          <Card key={index} className="max-w-xs h-[20rem] bg-muted/50">
             <CardHeader className="flex items-center justify-center h-20">
               <CardTitle className="text-xl">{tool.title}</CardTitle>
             </CardHeader>
